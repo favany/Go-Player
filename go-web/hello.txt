@@ -1,0 +1,10 @@
+<h1 style="color:orange">Hello Golang!</h1>
+<h2>How are you?</h2>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img id='i1' src="https://go.dev/images/gophers/ladder.svg">
+<button id='b1'>选我</button>
+<script>
+    document.getElementById('b1').onclick=function(){
+        document.getElementById('i1').src='https://go.dev/images/gophers/ladder.svg'
+    }
+</script>
+
