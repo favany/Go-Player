@@ -60,4 +60,30 @@ func main() {
 		fmt.Printf("%d： %d %d %d", i, valNode.row, valNode.col, valNode.val)
 		fmt.Println()
 	}
+
+	// 将这个稀疏数组，存盘 d: /chessmap.txt
+
+	// 如何恢复成原始的数组
+
+	// 先创建一个原始数组
+	var chessMap2 [11][11]int
+
+	// 遍历 sparseArr [遍历文件每一行]
+	for i, valNode := range sparseArr {
+		if i != 0 { // 跳过第一行的记录值
+			chessMap2[valNode.row][valNode.col] = valNode.val
+		}
+	}
+
+	fmt.Println("恢复后的原始数据：")
+	for _, v := range chessMap2 {
+		for _, v2 := range v {
+			fmt.Printf("%d\t", v2)
+		}
+		fmt.Println()
+	}
 }
+
+// 对稀疏数组的改进
+// 1. 将构建的稀疏数组，存盘 chessmap.data
+// 2. 在恢复原始二维数组，要求从文件 chessmap.data 获取
