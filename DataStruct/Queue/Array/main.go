@@ -30,20 +30,19 @@ type Queue struct {
 func (q *Queue) AddQueue(val int) (err error) {
 	// 先判断队列是否已满
 	if q.rear == q.maxSize-1 { // 重要‼️提示：rear 是队列尾部（含最后元素）
-		return errors.New("queue full")
+		return errors.New("队列已满，无法加入！")
 	}
 
 	q.rear++ // rear 后移
 	q.array[q.rear] = val
 	return
-
 }
 
 // 显示队列
 
 func (q *Queue) ShowQueue() {
 	fmt.Println("队列当前的情况是：")
-	// this.front 不含队首的元素
+	// q.front 不含队首的元素
 	for i := q.front + 1; i <= q.rear; i++ {
 		fmt.Printf("array[%d]=%d\t", i, q.array[i])
 	}
@@ -51,7 +50,18 @@ func (q *Queue) ShowQueue() {
 	fmt.Println()
 }
 
-// 编写一个主函数测试，测试
+// 从队列中取出数据
+
+func (q *Queue) GetQueue() (val int, err error) {
+	// 先判断队列是否为空
+	if q.rear == q.front { // 队空
+		return -1, errors.New("队列是空")
+	}
+	q.front++
+
+	return val, err
+}
+
 func main() {
 	// 先创建一个队列
 	queue := &Queue{
@@ -67,7 +77,7 @@ func main() {
 		fmt.Println("2. 输入 get 表示从队列获取数据（尚未完工）")
 		fmt.Println("3. 输入 show 表示显示队列")
 		fmt.Println("4. 输入 exit 表示退出队列")
-		fmt.Println("请输入 add / get（尚未完工） / show / exit ：")
+		fmt.Println("请输入 add / get / show / exit ：")
 
 		fmt.Scanln(&key)
 		switch key {
@@ -82,7 +92,12 @@ func main() {
 				fmt.Println()
 			}
 		case "get":
-			fmt.Println("get")
+			val, err := queue.GetQueue()
+			if err != nil {
+				fmt.Println(err.Error())
+			} else {
+				fmt.Println("队列中的数为", val)
+			}
 		case "show":
 			queue.ShowQueue()
 		case "exit":
@@ -90,3 +105,8 @@ func main() {
 		}
 	}
 }
+
+// 小结：
+// 对上面代码的小结和说明：
+// 上面代码实现了基本队列结构，但是没有有效地利用数组空间。
+// 请思考，如何使用数组实现一个环形的队列。
