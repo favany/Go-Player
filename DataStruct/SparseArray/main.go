@@ -83,7 +83,3 @@ func main() {
 		fmt.Println()
 	}
 }
-
-// 对稀疏数组的改进
-// 1. 将构建的稀疏数组，存盘 chessmap.data
-// 2. 在恢复原始二维数组，要求从文件 chessmap.data 获取
